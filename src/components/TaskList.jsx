@@ -4,6 +4,7 @@ import { deleteTask } from '../redux/tasks/taskSlice';
 
 const TaskList = () => {
   const dispatch = useDispatch();
+  const errorMessage = useSelector((state) => state.tasks.error);
 
   const tasks = useSelector((state) => state.tasks.tasks);
   const sortedTasks = [...tasks].sort((a, b) => {
@@ -17,6 +18,11 @@ const TaskList = () => {
   };
   return (
     <div className=' w-full lg:w-1/2 mx-auto'>
+      {errorMessage && (
+        <div className='bg-red-500 text-white p-2 text-center mb-2'>
+          {errorMessage}
+        </div>
+      )}
       {sortedTasks.map((task) => (
         <li key={task.id} className='flex justify-between p-2 border-b'>
           <div className='flex items-center '>

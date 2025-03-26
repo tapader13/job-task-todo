@@ -7,7 +7,7 @@ const TaskInput = () => {
   const [newTask, setNewTask] = useState('');
   const [priority, setPriority] = useState('Medium');
   const user = useSelector((state) => state.auth.user);
-
+  const errorMessage = useSelector((state) => state.tasks.error);
   const handleAddTask = () => {
     if (newTask.trim() !== '') {
       dispatch(addTask({ title: newTask, priority: priority, email: user }));
@@ -17,6 +17,11 @@ const TaskInput = () => {
 
   return (
     <div>
+      {/* {errorMessage && (
+        <div className='bg-red-500 text-white p-2 text-center mb-2'>
+          {errorMessage}
+        </div>
+      )} */}
       <div className='flex mb-4 max-w-sm mx-auto'>
         <input
           className='flex-1 p-2 border rounded-l text-gray-700 bg-gray-300'
