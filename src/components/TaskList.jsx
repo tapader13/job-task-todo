@@ -37,7 +37,7 @@ const TaskList = () => {
             </span>
           </div>
           <button
-            className='bg-red-500 px-2 py-1 rounded'
+            className='bg-red-500 cursor-pointer px-2 py-1 rounded'
             onClick={() => handleDelete(task.id)}
           >
             Delete
