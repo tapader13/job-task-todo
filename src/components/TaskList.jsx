@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteTask, fetchTasks } from '../redux/tasks/taskSlice';
+import { deleteTask } from '../redux/tasks/taskSlice';
 
 const TaskList = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
   const tasks = useSelector((state) => state.tasks.tasks);
   const sortedTasks = [...tasks].sort((a, b) => {
     const priorityOrder = ['High', 'Medium', 'Low'];
