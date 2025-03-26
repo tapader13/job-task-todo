@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addTask } from '../redux/tasks/taskSlice';
 
 const TaskInput = () => {
   const dispatch = useDispatch();
   const [newTask, setNewTask] = useState('');
   const [priority, setPriority] = useState('Medium');
+  const user = useSelector((state) => state.auth.user);
 
   const handleAddTask = () => {
     if (newTask.trim() !== '') {
-      dispatch(addTask({ title: newTask, priority: priority }));
+      dispatch(addTask({ title: newTask, priority: priority, email: user }));
       setNewTask('');
     }
   };

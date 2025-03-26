@@ -12,11 +12,12 @@ const App = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
+  // console.log(user, 'user');
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(fetchTasks());
+      dispatch(fetchTasks({ user }));
     }
-  }, [dispatch, isAuthenticated]);
+  }, [dispatch, isAuthenticated, user]);
 
   const handleLogout = () => {
     dispatch(logout());

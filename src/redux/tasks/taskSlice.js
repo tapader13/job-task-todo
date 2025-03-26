@@ -4,11 +4,14 @@ import axios from 'axios';
 const API_URL = 'https://67e293c997fc65f53536b0d8.mockapi.io/tasks';
 
 // Fetch tasks from API
-export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
-  const response = await axios.get(API_URL);
-  console.log(response, 'response from API');
-  return response.data;
-});
+export const fetchTasks = createAsyncThunk(
+  'tasks/fetchTasks',
+  async ({ user }) => {
+    const response = await axios.get(API_URL);
+    console.log(response, 'response from API');
+    return response.data.filter((task) => task.email === user);
+  }
+);
 
 // Add a new task
 export const addTask = createAsyncThunk('tasks/addTask', async (task) => {
